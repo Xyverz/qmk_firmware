@@ -26,11 +26,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "action_macro.h"
 #include "action_util.h"
 #include "action.h"
+#include "wait.h"
 
 #ifdef DEBUG_ACTION
 #include "debug.h"
 #else
 #include "nodebug.h"
+#endif
+
+int tp_buttons;
+
+#ifdef RETRO_TAPPING
+int retro_tapping_counter = 0;
 #endif
 
 #ifdef FAUXCLICKY_ENABLE
@@ -42,6 +49,9 @@ void action_exec(keyevent_t event)
     if (!IS_NOEVENT(event)) {
         dprint("\n---- action_exec: start -----\n");
         dprint("EVENT: "); debug_event(event); dprintln();
+#ifdef RETRO_TAPPING
+        retro_tapping_counter++;
+#endif
     }
 
 #ifdef FAUXCLICKY_ENABLE
@@ -64,8 +74,10 @@ void action_exec(keyevent_t event)
 
 #if (defined(ONESHOT_TIMEOUT) && (ONESHOT_TIMEOUT > 0))
     if (has_oneshot_layer_timed_out()) {
-        dprintf("Oneshot layer: timeout\n");
         clear_oneshot_layer_state(ONESHOT_OTHER_KEY_PRESSED);
+    }
+    if (has_oneshot_mods_timed_out()) {
+        clear_oneshot_mods();
     }
 #endif
 
@@ -310,9 +322,35 @@ void process_action(keyrecord_t *record, action_t action)
         /* Mouse key */
         case ACT_MOUSEKEY:
             if (event.pressed) {
+                switch (action.key.code) {
+                    case KC_MS_BTN1:
+                        tp_buttons |= (1<<0);
+                        break;
+                    case KC_MS_BTN2:
+                        tp_buttons |= (1<<1);
+                        break;
+                    case KC_MS_BTN3:
+                        tp_buttons |= (1<<2);
+                        break;
+                    default:
+                        break;
+                }
                 mousekey_on(action.key.code);
                 mousekey_send();
             } else {
+                switch (action.key.code) {
+                    case KC_MS_BTN1:
+                        tp_buttons &= ~(1<<0);
+                        break;
+                    case KC_MS_BTN2:
+                        tp_buttons &= ~(1<<1);
+                        break;
+                    case KC_MS_BTN3:
+                        tp_buttons &= ~(1<<2);
+                        break;
+                    default:
+                        break;
+                }
                 mousekey_off(action.key.code);
                 mousekey_send();
             }
@@ -438,6 +476,9 @@ void process_action(keyrecord_t *record, action_t action)
                     } else {
                         if (tap_count > 0) {
                             dprint("KEYMAP_TAP_KEY: Tap: unregister_code\n");
+                            if (action.layer_tap.code == KC_CAPS) {
+                                wait_ms(80);
+                            }
                             unregister_code(action.layer_tap.code);
                         } else {
                             dprint("KEYMAP_TAP_KEY: No tap: Off on release\n");
@@ -537,6 +578,47 @@ void process_action(keyrecord_t *record, action_t action)
             break;
     }
 
+#ifndef NO_ACTION_LAYER
+    // if this event is a layer action, update the leds
+    switch (action.kind.id) {
+        case ACT_LAYER:
+        #ifndef NO_ACTION_TAPPING
+        case ACT_LAYER_TAP:
+        case ACT_LAYER_TAP_EXT:
+        #endif
+            led_set(host_keyboard_leds());
+            break;
+        default:
+            break;
+    }
+#endif
+
+#ifndef NO_ACTION_TAPPING
+  #ifdef RETRO_TAPPING
+  if (!is_tap_key(record->event.key)) {
+    retro_tapping_counter = 0;
+  } else {
+    if (event.pressed) {
+        if (tap_count > 0) {
+          retro_tapping_counter = 0;
+        } else {
+
+        }
+    } else {
+      if (tap_count > 0) {
+        retro_tapping_counter = 0;
+      } else {
+        if (retro_tapping_counter == 2) {
+          register_code(action.layer_tap.code);
+          unregister_code(action.layer_tap.code);
+        }
+        retro_tapping_counter = 0;
+      }
+    }
+  }
+  #endif
+#endif
+
 #ifndef NO_ACTION_ONESHOT
     /* Because we switch layers after a oneshot event, we need to release the
      * key before we leave the layer or no key up event will be generated.
@@ -570,6 +652,7 @@ void register_code(uint8_t code)
 #endif
         add_key(KC_CAPSLOCK);
         send_keyboard_report();
+        wait_ms(100);
         del_key(KC_CAPSLOCK);
         send_keyboard_report();
     }
@@ -580,6 +663,7 @@ void register_code(uint8_t code)
 #endif
         add_key(KC_NUMLOCK);
         send_keyboard_report();
+        wait_ms(100);
         del_key(KC_NUMLOCK);
         send_keyboard_report();
     }
@@ -590,6 +674,7 @@ void register_code(uint8_t code)
 #endif
         add_key(KC_SCROLLLOCK);
         send_keyboard_report();
+        wait_ms(100);
         del_key(KC_SCROLLLOCK);
         send_keyboard_report();
     }
