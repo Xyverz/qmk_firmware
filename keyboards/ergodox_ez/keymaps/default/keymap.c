@@ -217,7 +217,9 @@ uint32_t layer_state_set_user(uint32_t state) {
         #ifdef RGBLIGHT_COLOR_LAYER_0
           rgblight_setrgb(RGBLIGHT_COLOR_LAYER_0);
         #else
+        #ifdef RGBLIGHT_ENABLE
           rgblight_init();
+        #endif
         #endif
         break;
       case 1:
@@ -264,7 +266,7 @@ uint32_t layer_state_set_user(uint32_t state) {
         ergodox_right_led_2_on();
         ergodox_right_led_3_on();
         #ifdef RGBLIGHT_COLOR_LAYER_7
-          rgblight_setrgb(RGBLIGHT_COLOR_LAYER_6);
+          rgblight_setrgb(RGBLIGHT_COLOR_LAYER_7);
         #endif
         break;
       default:

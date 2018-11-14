@@ -5,7 +5,11 @@
 
 // Number of backlight levels
 #undef  BACKLIGHT_LEVELS
+<<<<<<< HEAD
 #define BACKLIGHT_LEVELS 3
+=======
+#define BACKLIGHT_LEVELS 8
+>>>>>>> master
 
 /* ws2812 RGB LED */
 #undef RGB_DI_PIN
@@ -18,4 +22,8 @@
 #define RGBLIGHT_VAL_STEP 17
 
 
+<<<<<<< HEAD
 #endif
+=======
+#endif
+>>>>>>> master

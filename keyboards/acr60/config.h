@@ -5,11 +5,11 @@
 
 /* USB Device descriptor parameter */
 #define VENDOR_ID       0xFEED
-#define PRODUCT_ID      0x2260
+#define PRODUCT_ID      0xCA60
 #define DEVICE_VER      0x0001
-#define MANUFACTURER    MechKeysCa
+#define MANUFACTURER    MECHKEYS
 #define PRODUCT         ACR60
-#define DESCRIPTION     ACR60 Keyboard
+#define DESCRIPTION     60% customizable keyboard
 
 /* key matrix size */
 #define MATRIX_ROWS 5
@@ -40,9 +40,6 @@
 #define IS_COMMAND() ( \
     keyboard_report->mods == (MOD_BIT(KC_LSHIFT) | MOD_BIT(KC_RSHIFT)) \
 )
-
-/* prevent stuck modifiers */
-#define PREVENT_STUCK_MODIFIERS
 
 #define RGB_DI_PIN E2
 #define RGBLIGHT_ANIMATIONS
