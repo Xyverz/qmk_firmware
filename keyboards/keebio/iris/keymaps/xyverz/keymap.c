@@ -73,7 +73,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 
   [_LOWER] = LAYOUT_kc (
-     F11 , F1 , F2 , F3 , F4 , F5 ,                F6 , F7 , F8 , F9 ,F10 ,F12 ,
+     TILD,EXCL, 2  , 3  , 4  , 5  ,                6  , 7  , 8  , 9  , 0  ,BSLS,
      TILD,____,____, UP ,____,____,               ____,____,____,____,____,____,
      CAPS,____,LEFT,DOWN,RGHT,HOME,               PGUP,UNDS,PLUS,LCBR,RCBR,PIPE,
      BL_S,____,MUTE,VOLD,VOLU,END ,____,     ____,PGDN,MPRV,MPLY,MNXT,____,____,
@@ -81,7 +81,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 
   [_RAISE] = LAYOUT_kc (
-     F11 , F1 , F2 , F3 , F4 , F5 ,                F6 , F7 , F8 , F9 ,F10 ,F12 ,
+     GRV , 1  , 2  , 3  , 4  , 5  ,                6  , 7  , 8  , 9  , 0  ,BSLS,
      GRV ,____,____, UP ,____,____,               ____,____,____,____,____,____,
      CAPS,____,LEFT,DOWN,RGHT,HOME,               PGUP,MINS,EQL ,LBRC,RBRC,BSLS,
      BL_S,____,MUTE,VOLD,VOLU,END ,____,     ____,PGDN,MPRV,MPLY,MNXT,____,____,
