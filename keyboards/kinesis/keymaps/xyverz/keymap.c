@@ -2,20 +2,19 @@
 
 enum layer_names {
     _DVORAK,
-    _QWERTY,
-    _COLEMAK,
-    _KEYPAD,
+    _LOWER,
+    _RAISE,
 };
 
-enum custom_keycodes { DVORAK = SAFE_RANGE, QWERTY, COLEMAK, KEYPAD };
+enum custom_keycodes { DVORAK = SAFE_RANGE, LOWER, RAISE };
 
 // Aliases to make the keymap more uniform
 #define GUI_END GUI_T(KC_END)
 #define KPD_ENT LT(_KEYPAD, KC_ENT)
 #define MACLOCK LGUI(LCTL(KC_Q))
 #define WINLOCK LGUI(KC_L)
-#define LOWER MT(_LOWER)
-#define RAISE MT(_RAISE)
+#define LOWER MO(_LOWER)
+#define RAISE MO(_RAISE)
 
 // clang-format off
 
@@ -142,8 +141,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
            _______, _______,
            _______,
            WINLOCK, _______, _______
-    )
-};
+    ),
 
 [_RAISE] = LAYOUT (
            // Left Hand
