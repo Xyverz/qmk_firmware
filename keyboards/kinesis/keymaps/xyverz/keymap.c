@@ -10,7 +10,6 @@ enum custom_keycodes { DVORAK = SAFE_RANGE, LOWER, RAISE };
 
 // Aliases to make the keymap more uniform
 #define GUI_END GUI_T(KC_END)
-#define KPD_ENT LT(_KEYPAD, KC_ENT)
 #define MACLOCK LGUI(LCTL(KC_Q))
 #define WINLOCK LGUI(KC_L)
 #define LOWER MO(_LOWER)
@@ -34,11 +33,11 @@ enum custom_keycodes { DVORAK = SAFE_RANGE, LOWER, RAISE };
 	|--------+------+------+------+------+------||------+------+------+------+------+--------|
 	| Tab    |   '  |   ,  |   .  |   P  |   Y  ||   F  |   G  |   C  |   R  |   L  |   /    |
 	|--------+------+------+------+------+------||------+------+------+------+------+--------|
-	| ~      |   A  |   O  |   E  |   U  |   I  ||   D  |   H  |   T  |   N  |   S  |   -    |
+	| `      |   A  |   O  |   E  |   U  |   I  ||   D  |   H  |   T  |   N  |   S  |   -    |
 	|--------+------+------+------+------+------||------+------+------+------+------+--------|
 	| LShift |   Z  |   X  |   C  |   V  |   X  ||   B  |   M  |   W  |   V  |   Z  | RShift |
 	`--------+------+------+------+------+------'`------+------+------+------+------+--------'
-	         |   `  | Left | Rght |Lower |              |Raise |  Up  |  Dn  |   =  |
+	         |  LWR | LGUI | Left | Rght |              |  Up  |  Dn  | RGUI | RSE  |
 	         `---------------------------'              `---------------------------'
 	                             ,--------------.,--------------.
 	                             | LCtl  | LAlt || RGUI | RCtl  |
@@ -98,7 +97,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
            KC_TAB,  KC_QUOT, KC_COMM, KC_DOT,  KC_P,    KC_Y,
            KC_TILD, KC_A,    KC_O,    KC_E,    KC_U,    KC_I,
            KC_LSFT, KC_SCLN, KC_Q,    KC_J,    KC_K,    KC_X,
-                    KC_GRV,  KC_LEFT, KC_RGHT, LOWER,
+                    LOWER,   KC_LGUI, KC_LEFT, KC_RGHT,
            // Left Thumb
                     KC_LCTL, KC_LALT,
                              KC_HOME,
@@ -110,7 +109,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
            KC_F,    KC_G,    KC_C,    KC_R,    KC_L,    KC_SLSH,
            KC_D,    KC_H,    KC_T,    KC_N,    KC_S,    KC_MINS,
            KC_B,    KC_M,    KC_W,    KC_V,    KC_Z,    KC_RSFT,
-                    RAISE,   KC_UP,   KC_DOWN, KC_EQL,
+                    KC_UP,   KC_DOWN, KC_RGUI, RAISE,
            // Right Thumb
            KC_RGUI, KC_RCTL,
            KC_PGUP,
