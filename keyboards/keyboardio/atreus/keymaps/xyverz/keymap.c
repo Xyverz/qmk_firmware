@@ -131,14 +131,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	|------+------+------+------+------|              |------+------+------+------+------|
 	| CAPS |      |  UP  |      | Home |              | PgDn |      |   +  |   {  |   }  |
 	|------+------+------+------+------+------.,------+------+------+------+------+------|
-	|      | Left | Down | Right| End  |      ||      | PgUp | Mute | Vol- | Vol+ |      |
+	|      | Left | Down | Right| End  |MacLck||      | PgUp | Mute | Vol- | Vol+ |      |
 	|------+------+------+------+------+------||------+------+------+------+------+------|
 	|   ~  |      |      |      | Del  |      ||      | Ins  |      |      |      |      |
 	`-----------------------------------------'`-----------------------------------------'*/
   [_LOWER] = LAYOUT(
     KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                   KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN,
     KC_CAPS, _______, KC_UP,   _______, KC_HOME,                   KC_PGUP, _______, KC_PLUS, KC_LCBR, KC_RCBR,
-    _______, KC_LEFT, KC_DOWN, KC_RGHT, KC_END,  _______, _______, KC_PGDN, KC_MUTE, KC_VOLD, KC_VOLU, _______,
+    _______, KC_LEFT, KC_DOWN, KC_RGHT, KC_END,  MACLOCK, _______, KC_PGDN, KC_MUTE, KC_VOLD, KC_VOLU, _______,
     KC_TILD, KC_LEFT, KC_RGHT, _______, KC_DEL,  _______, _______, KC_INS,  _______, KC_UP,   KC_DOWN, _______
   ),
 
