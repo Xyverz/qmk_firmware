@@ -54,7 +54,6 @@ enum layer_names { _DVORAK, _QWERTY, _COLEMAK, _DESTINY, _LOWER, _RAISE, _ADJUST
 enum atreus62_keycodes { DVORAK = SAFE_RANGE, QWERTY, COLEMAK, DESTINY, LOWER, RAISE, ADJUST };
 
 // Aliases to make the keymap clearer.
-#define CTL_ENT CTL_T(KC_ENT)
 #define DEL_GUI GUI_T(KC_DEL)
 #define LOWER MO(_LOWER)
 #define RAISE MO(_RAISE)
@@ -145,9 +144,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       return false;
     case DESTINY:
         set_single_persistent_default_layer(_DESTINY);
-      return false;
-    case WOW:
-        set_single_persistent_default_layer(_WOW);
       return false;
    }
   }
