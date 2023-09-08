@@ -20,6 +20,7 @@
 
 enum layer_names {
   _DVORAK,
+  _DESTINY,
   _LOWER,
   _RAISE,
   _ADJUST
@@ -27,6 +28,7 @@ enum layer_names {
 
 enum planck_keycodes {
   DVORAK = SAFE_RANGE,
+  DESTINY,
   LOWER,
   RAISE,
   ADJUST
@@ -62,6 +64,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_A,    KC_O,    KC_E,    KC_U,    KC_I,                      KC_D,    KC_H,    KC_T,    KC_N,    KC_S   ,
     SFTSCLN, KC_Q,    KC_J,    KC_K,    KC_X,    KC_HOME, KC_END,  KC_B,    KC_M,    KC_W,    KC_V,    SFTZED ,
     ESCTRL,  TABALT,  KC_LGUI, LOWER,   KC_BSPC, DELGUI,  ALTENT,  KC_SPC,  RAISE,   KC_MINS, KC_SLSH, KC_BSLS
+  ),
+
+  /* Destiny Layer to make playing Destiny easier
+	,----------------------------------.              ,----------------------------------.
+	|   '  |   ,  |   .  |   P  |   Y  |              |   F  |   G  |   C  |   R  |   L  |
+	|------+------+------+------+------|              |------+------+------+------+------|
+	|   A  |   O  |   E  |   U  |   I  |              |   D  |   H  |   T  |   N  |   S  |
+	|------+------+------+------+------+------.,------+------+------+------+------+------|
+	| Shft |   Q  |   J  |   K  |   X  | Home || End  |   B  |   M  |   W  |   V  |SFT/ Z|
+	|------+------+------+------+------+------||------+------+------+------+------+------|
+	| Ctrl |  Alt |  Tab | LOWER| BkSp | Del  || Entr |  Spc | RAISE|   -  |   /  | Esc  |
+	`-----------------------------------------'`-----------------------------------------' */
+  [_DESTINY] = LAYOUT(
+    KC_QUOT, KC_COMM, KC_DOT,  KC_P,    KC_Y,                      KC_F,    KC_G,    KC_C,    KC_R,    KC_L   ,
+    KC_A,    KC_O,    KC_E,    KC_U,    KC_I,                      KC_D,    KC_H,    KC_T,    KC_N,    KC_S   ,
+    KC_LSFT, KC_Q,    KC_J,    KC_K,    KC_X,    KC_HOME, KC_END,  KC_B,    KC_M,    KC_W,    KC_V,    SFTZED ,
+    KC_LCTL, KC_LALT, KC_TAB,  LOWER,   KC_BSPC, KC_DEL,  KC_ENT,  KC_SPC,  RAISE,   KC_MINS, KC_SLSH, KC_ESC
   ),
 
   /* LOWER Layer
@@ -106,12 +125,26 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	|------+------+------+------+------+------.,------+------+------+------+------+------|
 	|      |      |      |      |      |      ||      |      |      |      |      |      |
 	|------+------+------+------+------+------||------+------+------+------+------+------|
-	|      |      |      |      |      |      ||      |      |      |      |      |QKBOOT|
+	|      |      |      |      |      |      ||      |      |      |DESTNY|DVORAK|QKBOOT|
 	`-----------------------------------------'`-----------------------------------------'*/
   [_ADJUST] = LAYOUT(
     KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                     KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10 ,
     KC_F11,  _______, _______, _______, _______,                   _______, KC_PSCR, KC_SCRL, KC_PAUS, KC_F12 ,
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, QK_BOOT  
+    _______, _______, _______, _______, _______, _______, _______, _______, _______, DESTINY, DVORAK,  QK_BOOT  
   ),
 };
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    if (record->event.pressed) {
+        switch (keycode) {
+            case DESTINY:
+                set_single_persistent_default_layer(_DESTINY);
+                return false;
+            case DVORAK:
+                set_single_persistent_default_layer(_DVORAK);
+                return false;
+        }
+    }
+    return true;
+}
