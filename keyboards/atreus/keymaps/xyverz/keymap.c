@@ -17,8 +17,12 @@ enum layer_names {
 };
 
 enum planck_keycodes {
+<<<<<<< HEAD
   DVORAK = SAFE_RANGE,
   LOWER,
+=======
+  LOWER = SAFE_RANGE,
+>>>>>>> origin/master
   RAISE,
   ADJUST
 };

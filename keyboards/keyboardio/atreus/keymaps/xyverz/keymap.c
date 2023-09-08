@@ -41,6 +41,7 @@ enum planck_keycodes {
 #define DELGUI GUI_T(KC_DEL)
 #define MACLOCK LGUI(LCTL(KC_Q))
 #define WINLOCK LGUI(KC_L)
+#define ADJUST MO(_ADJUST)
 #define LOWER MO(_LOWER)
 #define RAISE MO(_RAISE)
 #define ADJUST MO(_ADJUST)
