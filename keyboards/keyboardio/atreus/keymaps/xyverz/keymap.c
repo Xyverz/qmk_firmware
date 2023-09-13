@@ -74,13 +74,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	|------+------+------+------+------+------.,------+------+------+------+------+------|
 	| Shft |   Q  |   J  |   K  |   X  | Home || End  |   B  |   M  |   W  |   V  |SFT/ Z|
 	|------+------+------+------+------+------||------+------+------+------+------+------|
-	| Ctrl |  Alt |  Tab | LOWER| BkSp | Del  || Entr |  Spc |ADJUST|   -  |   /  | Esc  |
+	| Ctrl |  Alt |  Tab | RAISE| BkSp | Del  || Entr |  Spc |ADJUST|   -  |   /  | Esc  |
 	`-----------------------------------------'`-----------------------------------------' */
   [_DESTINY] = LAYOUT(
     KC_QUOT, KC_COMM, KC_DOT,  KC_P,    KC_Y,                      KC_F,    KC_G,    KC_C,    KC_R,    KC_L   ,
     KC_A,    KC_O,    KC_E,    KC_U,    KC_I,                      KC_D,    KC_H,    KC_T,    KC_N,    KC_S   ,
     KC_LSFT, KC_Q,    KC_J,    KC_K,    KC_X,    KC_HOME, KC_END,  KC_B,    KC_M,    KC_W,    KC_V,    SFTZED ,
-    KC_LCTL, KC_LALT, KC_TAB,  LOWER,   KC_BSPC, KC_DEL,  KC_ENT,  KC_SPC,  ADJUST,  KC_MINS, KC_SLSH, KC_ESC
+    KC_LCTL, KC_LALT, KC_TAB,  RAISE,   KC_BSPC, KC_DEL,  KC_ENT,  KC_SPC,  ADJUST,  KC_MINS, KC_SLSH, KC_ESC
   ),
 
   /* LOWER Layer
