@@ -71,7 +71,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
               KC_TRNS,  KC_TRNS,  KC_HOME,  KC_END,                                                                                        KC_PGUP,  KC_PGDN,  KC_TRNS,  KC_TRNS,
                                                       KC_TRNS,  KC_TRNS,                                               KC_TRNS,  KC_TRNS,
                                                                 KC_TRNS,                                               KC_TRNS,
-                                            MACLOCK,  KC_TRNS,  KC_TRNS,                                               WINLOCK,  KC_TRNS,  KC_SPC
+                                            MACLOCK,  KC_TRNS,  KC_TRNS,                                               KC_TRNS,  KC_TRNS,  WINLOCK
   ),
 
 };
