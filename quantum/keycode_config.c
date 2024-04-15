@@ -16,8 +16,6 @@
 
 #include "keycode_config.h"
 
-keymap_config_t keymap_config;
-
 /** \brief keycode_config
  *
  * This function is used to check a specific keycode against the bootmagic config,

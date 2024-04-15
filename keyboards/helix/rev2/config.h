@@ -31,20 +31,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // Helix keyboard RGB LED support
 //    see ./rules.mk: LED_BACK_ENABLE or LED_UNDERGLOW_ENABLE set yes
 #ifdef RGBLED_BACK
-  #define RGBLIGHT_LED_COUNT 32
+  #define RGBLED_NUM 32
 #else
-  #define RGBLIGHT_LED_COUNT 6
+  #define RGBLED_NUM 6
 #endif
 
 #ifndef IOS_DEVICE_ENABLE
-  #if RGBLIGHT_LED_COUNT <= 6
+  #if RGBLED_NUM <= 6
     #define RGBLIGHT_LIMIT_VAL 255
   #else
     #define RGBLIGHT_LIMIT_VAL 120
   #endif
   #define RGBLIGHT_VAL_STEP 17
 #else
-  #if RGBLIGHT_LED_COUNT <= 6
+  #if RGBLED_NUM <= 6
     #define RGBLIGHT_LIMIT_VAL 90
   #else
     #define RGBLIGHT_LIMIT_VAL 35

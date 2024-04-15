@@ -27,9 +27,7 @@ jobs:
 
     - name: Get changed files
       id: file_changes
-      uses: tj-actions/changed-files@v44
-      with:
-        use_rest_api: true
+      uses: tj-actions/changed-files@v42
 
     - name: Print info
       run: |
@@ -64,12 +62,10 @@ jobs:
 
         qmk format-text ${{ steps.file_changes.outputs.all_changed_files}} || true
         for file in ${{ steps.file_changes.outputs.all_changed_files}}; do
-          if [[ -f $file ]]; then
-            if ! git diff --quiet $file; then
-              echo "File '${file}' Requires Formatting"
-              echo "::error file=${file}::Requires Formatting"
-              exit_code=$(($exit_code + 1))
-            fi
+          if ! git diff --quiet $file; then
+            echo "File '${file}' Requires Formatting"
+            echo "::error file=${file}::Requires Formatting"
+            exit_code=$(($exit_code + 1))
           fi
         done
 

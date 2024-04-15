@@ -10,3 +10,5 @@ NKRO_ENABLE = no            # Enable N-Key Rollover
 BACKLIGHT_ENABLE = yes # Enable keyboard backlight functionality
 AUDIO_ENABLE = no      # Audio output
 RGBLIGHT_ENABLE = yes  # Enable WS2812 RGB underlight. 
+
+LAYOUTS_HAS_RGB = no

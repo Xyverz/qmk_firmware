@@ -19,7 +19,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define MASTER_RIGHT
 
-#ifdef RGBLIGHT_ENABLE
+  #ifdef RGB_MATRIX_ENABLE
+    #define RGB_MATRIX_LED_COUNT 52
+    #define RGB_MATRIX_MAXIMUM_BRIGHTNESS 150
+
+    #define RGB_MATRIX_FRAMEBUFFER_EFFECTS
+
+    #define RGB_MATRIX_KEYPRESSES  // reacts to keypresses
+
+    #define RGB_MATRIX_DEFAULT_MODE RGB_MATRIX_TYPING_HEATMAP
+  #else
 /*== customize breathing effect ==*/
   /*==== (DEFAULT) use fixed table instead of exp() and sin() ====*/
     #define RGBLIGHT_BREATHE_TABLE_SIZE 256      // 256(default) or 128 or 64
@@ -27,10 +36,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     #define RGBLIGHT_EFFECT_BREATHE_CENTER 2     // 1 to 2.7
     #define RGBLIGHT_EFFECT_BREATHE_MAX    255   // 0 to 255
 /*== customize snake effect ==*/
-    #define RGBLIGHT_EFFECT_SNAKE_LENGTH RGBLIGHT_LED_COUNT
+    #define RGBLIGHT_EFFECT_SNAKE_LENGTH RGBLED_NUM
 /*== customize knight effect ==*/
     #define RGBLIGHT_EFFECT_KNIGHT_LENGTH 6
-#endif
+  #endif
 
 /* Audio */
 #ifdef AUDIO_ENABLE

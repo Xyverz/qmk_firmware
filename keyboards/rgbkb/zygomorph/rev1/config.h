@@ -22,10 +22,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define EE_HANDS
 
 #ifndef RGBLIGHT_SPLIT_ENABLE
-    #define RGBLIGHT_LED_COUNT 30
+    #define RGBLED_NUM 30
 #else
-    #define RGBLIGHT_LED_COUNT 60
+    #define RGBLED_NUM 60
 #endif
+
+#define RGB_MATRIX_LED_COUNT 60
+#define RGB_MATRIX_SPLIT { 30, 30 }
 
 #ifdef IOS_DEVICE_ENABLE
   #define RGBLIGHT_LIMIT_VAL 40

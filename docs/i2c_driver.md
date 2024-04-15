@@ -127,14 +127,31 @@ This function is weakly defined, meaning it can be overridden if necessary for y
 
 ```c
 void i2c_init(void) {
-    gpio_set_pin_input(B6); // Try releasing special pins for a short time
-    gpio_set_pin_input(B7);
+    setPinInput(B6); // Try releasing special pins for a short time
+    setPinInput(B7);
     wait_ms(10); // Wait for the release to happen
 
     palSetPadMode(GPIOB, 6, PAL_MODE_ALTERNATE(4) | PAL_STM32_OTYPE_OPENDRAIN | PAL_STM32_PUPDR_PULLUP); // Set B6 to I2C function
     palSetPadMode(GPIOB, 7, PAL_MODE_ALTERNATE(4) | PAL_STM32_OTYPE_OPENDRAIN | PAL_STM32_PUPDR_PULLUP); // Set B7 to I2C function
 }
 ```
+
+---
+
+### `i2c_status_t i2c_start(uint8_t address, uint16_t timeout)` :id=api-i2c-start
+
+Start an I2C transaction.
+
+#### Arguments :id=api-i2c-start-arguments
+
+ - `uint8_t address`  
+   The 7-bit I2C address of the device (ie. without the read/write bit - this will be set automatically).
+ - `uint16_t timeout`  
+   The time in milliseconds to wait for a response from the target device.
+
+#### Return Value :id=api-i2c-start-return
+
+`I2C_STATUS_TIMEOUT` if the timeout period elapses, `I2C_STATUS_ERROR` if some other error occurs, otherwise `I2C_STATUS_SUCCESS`.
 
 ---
 
@@ -180,11 +197,11 @@ Receive multiple bytes from the selected I2C device.
 
 ---
 
-### `i2c_status_t i2c_write_register(uint8_t devaddr, uint8_t regaddr, uint8_t* data, uint16_t length, uint16_t timeout)` :id=api-i2c-write-register
+### `i2c_status_t i2c_writeReg(uint8_t devaddr, uint8_t regaddr, uint8_t* data, uint16_t length, uint16_t timeout)` :id=api-i2c-writereg
 
 Writes to a register with an 8-bit address on the I2C device.
 
-#### Arguments :id=api-i2c-write-register-arguments
+#### Arguments :id=api-i2c-writereg-arguments
 
  - `uint8_t devaddr`  
    The 7-bit I2C address of the device.
@@ -197,17 +214,17 @@ Writes to a register with an 8-bit address on the I2C device.
  - `uint16_t timeout`  
    The time in milliseconds to wait for a response from the target device.
 
-#### Return Value :id=api-i2c-write-register-return
+#### Return Value :id=api-i2c-writereg-return
 
 `I2C_STATUS_TIMEOUT` if the timeout period elapses, `I2C_STATUS_ERROR` if some other error occurs, otherwise `I2C_STATUS_SUCCESS`.
 
 ---
 
-### `i2c_status_t i2c_write_register16(uint8_t devaddr, uint16_t regaddr, uint8_t* data, uint16_t length, uint16_t timeout)` :id=api-i2c-write-register16
+### `i2c_status_t i2c_writeReg16(uint8_t devaddr, uint16_t regaddr, uint8_t* data, uint16_t length, uint16_t timeout)` :id=api-i2c-writereg16
 
 Writes to a register with a 16-bit address (big endian) on the I2C device.
 
-#### Arguments :id=api-i2c-write-register16-arguments
+#### Arguments :id=api-i2c-writereg16-arguments
 
  - `uint8_t devaddr`  
    The 7-bit I2C address of the device.
@@ -220,17 +237,17 @@ Writes to a register with a 16-bit address (big endian) on the I2C device.
  - `uint16_t timeout`  
    The time in milliseconds to wait for a response from the target device.
 
-#### Return Value :id=api-i2c-write-register16-return
+#### Return Value :id=api-i2c-writereg16-return
 
 `I2C_STATUS_TIMEOUT` if the timeout period elapses, `I2C_STATUS_ERROR` if some other error occurs, otherwise `I2C_STATUS_SUCCESS`.
 
 ---
 
-### `i2c_status_t i2c_read_register(uint8_t devaddr, uint8_t regaddr, uint8_t* data, uint16_t length, uint16_t timeout)` :id=api-i2c-read-register
+### `i2c_status_t i2c_readReg(uint8_t devaddr, uint8_t regaddr, uint8_t* data, uint16_t length, uint16_t timeout)` :id=api-i2c-readreg
 
 Reads from a register with an 8-bit address on the I2C device.
 
-#### Arguments :id=api-i2c-read-register-arguments
+#### Arguments :id=api-i2c-readreg-arguments
 
  - `uint8_t devaddr`  
    The 7-bit I2C address of the device.
@@ -241,17 +258,17 @@ Reads from a register with an 8-bit address on the I2C device.
  - `uint16_t timeout`  
    The time in milliseconds to wait for a response from the target device.
 
-#### Return Value :id=api-i2c-read-register-return
+#### Return Value :id=api-i2c-readreg-return
 
 `I2C_STATUS_TIMEOUT` if the timeout period elapses, `I2C_STATUS_ERROR` if some other error occurs, otherwise `I2C_STATUS_SUCCESS`.
 
 ---
 
-### `i2c_status_t i2c_read_register16(uint8_t devaddr, uint16_t regaddr, uint8_t* data, uint16_t length, uint16_t timeout)` :id=api-i2c-read-register16
+### `i2c_status_t i2c_readReg16(uint8_t devaddr, uint16_t regaddr, uint8_t* data, uint16_t length, uint16_t timeout)`
 
 Reads from a register with a 16-bit address (big endian) on the I2C device.
 
-#### Arguments :id=api-i2c-read-register16-arguments
+#### Arguments :id=api-i2c-readreg16-arguments
 
  - `uint8_t devaddr`  
    The 7-bit I2C address of the device.
@@ -262,27 +279,12 @@ Reads from a register with a 16-bit address (big endian) on the I2C device.
  - `uint16_t timeout`  
    The time in milliseconds to wait for a response from the target device.
 
-#### Return Value :id=api-i2c-read-register16-return
+#### Return Value :id=api-i2c-readreg16-return
 
 `I2C_STATUS_TIMEOUT` if the timeout period elapses, `I2C_STATUS_ERROR` if some other error occurs, otherwise `I2C_STATUS_SUCCESS`.
 
 ---
 
-### `i2c_status_t i2c_ping_address(uint8_t address, uint16_t timeout)` :id=api-i2c-ping-address
+### `i2c_status_t i2c_stop(void)` :id=api-i2c-stop
 
-Pings the I2C bus for a specific address. 
-
-On ChibiOS a "best effort" attempt is made by reading a single byte from register 0 at the requested address. This should generally work except for I2C devices that do not not respond to a register 0 read request, which will result in a false negative result (unsucessful response to ping attempt).
-
-This function is weakly defined, meaning it can be overridden if necessary for your particular use case:
-
-#### Arguments
-
- - `uint8_t address`  
-   The 7-bit I2C address of the device (ie. without the read/write bit - this will be set automatically).
- - `uint16_t timeout`  
-   The time in milliseconds to wait for a response from the target device.
-
-#### Return Value
-
-`I2C_STATUS_TIMEOUT` if the timeout period elapses, `I2C_STATUS_ERROR` if some other error occurs, otherwise `I2C_STATUS_SUCCESS`.
+Stop the current I2C transaction.

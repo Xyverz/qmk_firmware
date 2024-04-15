@@ -32,6 +32,3 @@
 
 /* PMW33XX Settings */
 #define PMW33XX_CS_PIN B0
-
-/* Custom encoder needs to specify just how many encoders we have */
-#define NUM_ENCODERS 1

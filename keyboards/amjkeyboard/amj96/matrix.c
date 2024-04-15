@@ -88,7 +88,7 @@ uint8_t matrix_scan(void)
         if (matrix_debouncing[i] != cols) {
             matrix_debouncing[i] = cols;
             if (debouncing) {
-                dprintf("bounce!: %02X\n", debouncing);
+                debug("bounce!: "); debug_hex(debouncing); debug("\n");
             }
             debouncing = DEBOUNCE;
         }

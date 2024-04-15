@@ -3,23 +3,18 @@
 #include "gpio.h"
 #include "chibios_config.h"
 
-// DEPRECATED - DO NOT USE
-#if defined(NOP_FUDGE)
-#    define WS2812_BITBANG_NOP_FUDGE NOP_FUDGE
-#endif
-
 /* Adapted from https://github.com/bigjosh/SimpleNeoPixelDemo/ */
 
-#ifndef WS2812_BITBANG_NOP_FUDGE
+#ifndef NOP_FUDGE
 #    if defined(STM32F0XX) || defined(STM32F1XX) || defined(GD32VF103) || defined(STM32F3XX) || defined(STM32F4XX) || defined(STM32L0XX) || defined(WB32F3G71xx) || defined(WB32FQ95xx)
-#        define WS2812_BITBANG_NOP_FUDGE 0.4
+#        define NOP_FUDGE 0.4
 #    else
 #        if defined(RP2040)
 #            error "Please use `vendor` WS2812 driver for RP2040"
 #        else
-#            error "WS2812_BITBANG_NOP_FUDGE configuration required"
+#            error "NOP_FUDGE configuration required"
 #        endif
-#        define WS2812_BITBANG_NOP_FUDGE 1 // this just pleases the compile so the above error is easier to spot
+#        define NOP_FUDGE 1 // this just pleases the compile so the above error is easier to spot
 #    endif
 #endif
 
@@ -38,7 +33,7 @@
 #endif
 
 #define NUMBER_NOPS 6
-#define CYCLES_PER_SEC (CPU_CLOCK / NUMBER_NOPS * WS2812_BITBANG_NOP_FUDGE)
+#define CYCLES_PER_SEC (CPU_CLOCK / NUMBER_NOPS * NOP_FUDGE)
 #define NS_PER_SEC (1000000000L) // Note that this has to be SIGNED since we want to be able to check for negative values of derivatives
 #define NS_PER_CYCLE (NS_PER_SEC / CYCLES_PER_SEC)
 #define NS_TO_CYCLES(n) ((n) / NS_PER_CYCLE)
@@ -62,15 +57,15 @@ void sendByte(uint8_t byte) {
         // using something like wait_ns(is_one ? T1L : T0L) here throws off timings
         if (is_one) {
             // 1
-            gpio_write_pin_high(WS2812_DI_PIN);
+            writePinHigh(WS2812_DI_PIN);
             wait_ns(WS2812_T1H);
-            gpio_write_pin_low(WS2812_DI_PIN);
+            writePinLow(WS2812_DI_PIN);
             wait_ns(WS2812_T1L);
         } else {
             // 0
-            gpio_write_pin_high(WS2812_DI_PIN);
+            writePinHigh(WS2812_DI_PIN);
             wait_ns(WS2812_T0H);
-            gpio_write_pin_low(WS2812_DI_PIN);
+            writePinLow(WS2812_DI_PIN);
             wait_ns(WS2812_T0L);
         }
     }

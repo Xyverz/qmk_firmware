@@ -20,10 +20,7 @@
     ]
   },
   "rgblight": {
-    "led_count": 4,
-    "default": {
-      "hue": 130
-    }
+    "led_count": 4
   },
   "ws2812": {
     "pin": "F0"

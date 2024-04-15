@@ -35,10 +35,6 @@
             "rainbow_swirl": true,
             "snake": true,
             "twinkle": true
-        },
-        "default": {
-            "hue": 234,
-            "val": 190
         }
     },
     "ws2812": {

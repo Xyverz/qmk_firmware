@@ -30,3 +30,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define LED_INDICATOR_3   B0
 #define LED_INDICATOR_4   A5
 #define LED_INDICATOR_5  C15
+
+#define WEAR_LEVELING_LOGICAL_SIZE    2048
+#define WEAR_LEVELING_BACKING_SIZE    4096

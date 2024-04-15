@@ -17,10 +17,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
-#define RGBLIGHT_LAYERS_RETAIN_VAL      
-#define RGBLIGHT_DEFAULT_MODE RGBLIGHT_MODE_RAINBOW_SWIRL + 5
-
+#    define RGBLIGHT_LAYERS                   
+#    define RGBLIGHT_LAYERS_OVERRIDE_RGB_OFF 
+#    define RGBLIGHT_LAYERS_RETAIN_VAL      
+#    define RGBLIGHT_DEFAULT_VAL 10
+#    define RGBLIGHT_DEFAULT_MODE RGBLIGHT_MODE_RAINBOW_SWIRL + 5
+#    define RGBLIGHT_SLEEP
 /*== customize breathing effect ==*/
-#define RGBLIGHT_BREATHE_TABLE_SIZE 128
-#define RGBLIGHT_EFFECT_BREATHE_CENTER 1.0
-#define RGBLIGHT_EFFECT_BREATHE_MAX    60
+#    define RGBLIGHT_BREATHE_TABLE_SIZE 128
+#    define RGBLIGHT_EFFECT_BREATHE_CENTER 1.0
+#    define RGBLIGHT_EFFECT_BREATHE_MAX    60

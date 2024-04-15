@@ -42,8 +42,9 @@ bool oled_task_user(void) {
 #endif
 
 
-#ifdef ENCODER_MAP_ENABLE
+#ifdef ENCODER_ENABLE
 
+bool encoder_update_user(uint8_t index, bool clockwise) {
 /*
 Rev1.1                      Rev1
 ,-----------------------,   ,-----------------------,
@@ -56,12 +57,37 @@ Rev1.1                      Rev1
 |     |     |     |  E1 |   |     |     |     |     |
 `-----------------------'   `-----------------------'
  */
-const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
-#ifdef KEYBOARD_keycapsss_plaid_pad_rev1
-  { ENCODER_CCW_CW(KC_F18, KC_F17), ENCODER_CCW_CW(KC_F20, KC_F19) }
-#else
-  { ENCODER_CCW_CW(KC_F18, KC_F17), ENCODER_CCW_CW(KC_F20, KC_F19), ENCODER_CCW_CW(KC_F22, KC_F21), ENCODER_CCW_CW(KC_F24, KC_F23) }
-#endif
-};
+
+  // First encoder (E1)
+  if (index == 0) {
+    if (clockwise) {
+      tap_code(KC_F17);
+    } else {
+      tap_code(KC_F18);
+    }
+  // Second encoder (E2)
+  } else if (index == 1) {
+    if (clockwise) {
+      tap_code(KC_F19);
+    } else {
+      tap_code(KC_F20);
+    }
+  // Third encoder (E3)
+  } else if (index == 2) {
+    if (clockwise) {
+      tap_code(KC_F21);
+    } else {
+      tap_code(KC_F22);
+    }
+  // Forth encoder (E4)
+  } else if (index == 3) {
+    if (clockwise) {
+      tap_code(KC_F23);
+    } else {
+      tap_code(KC_F24);
+    }
+  }
+    return true;
+}
 
 #endif

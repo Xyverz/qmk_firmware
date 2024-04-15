@@ -10,7 +10,6 @@
   },
   "rgblight": {
     "led_count": 9,
-    "driver": "custom",
     "animations": {
       "breathing": true,
       "rainbow_mood": true,

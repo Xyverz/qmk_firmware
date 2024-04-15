@@ -312,7 +312,8 @@ static inline uint8_t instant(void) {
     m0110_send(M0110_INSTANT);
     uint8_t data = m0110_recv();
     if (data != M0110_NULL) {
-        dprintf("%02X ", data);
+        debug_hex(data);
+        debug(" ");
     }
     return data;
 }

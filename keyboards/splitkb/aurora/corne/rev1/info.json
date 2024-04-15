@@ -95,11 +95,6 @@
                     {"pin_a": "F6", "pin_b": "F7"}
                 ]
             }
-        },
-        "transport": {
-            "sync": {
-                "matrix_state": true
-            }
         }
     },
     "rgblight": {
@@ -169,7 +164,6 @@
             {"flags": 4, "matrix": [5, 0], "x": 224, "y": 24}, // R SW12
             {"flags": 4, "matrix": [6, 0], "x": 224, "y": 41}  // R SW18
         ],
-        "max_brightness": 128,
-        "split_count": [27, 27]
+        "max_brightness": 128
     }
 }

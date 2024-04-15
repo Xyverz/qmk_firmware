@@ -18,6 +18,7 @@
 #pragma once
 
 #include "pin_defs.h"
+#include "config_led.h"
 
 // key matrix size
 #define MATRIX_ROWS 5

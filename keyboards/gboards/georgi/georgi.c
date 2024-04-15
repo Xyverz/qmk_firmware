@@ -45,17 +45,23 @@ uint8_t init_mcp23018(void) {
     // - unused  : input  : 1
     // - input   : input  : 1
     // - driving : output : 0
-    uint8_t data[] = {0b10000000, 0b11111111};
-    mcp23018_status = i2c_writeReg(I2C_ADDR, IODIRA, data, 2, ERGODOX_EZ_I2C_TIMEOUT);
+    mcp23018_status = i2c_start(I2C_ADDR_WRITE, ERGODOX_EZ_I2C_TIMEOUT);    if (mcp23018_status) goto out;
+    mcp23018_status = i2c_write(IODIRA, ERGODOX_EZ_I2C_TIMEOUT);            if (mcp23018_status) goto out;
+    mcp23018_status = i2c_write(0b10000000, ERGODOX_EZ_I2C_TIMEOUT);        if (mcp23018_status) goto out;
+    mcp23018_status = i2c_write(0b11111111, ERGODOX_EZ_I2C_TIMEOUT);        if (mcp23018_status) goto out;
+    i2c_stop();
 
-    if (!mcp23018_status) {
-        // set pull-up
-        // - unused  : on  : 1
-        // - input   : on  : 1
-        // - driving : off : 0
-        mcp23018_status = i2c_writeReg(I2C_ADDR, GPPUA, data, 2, ERGODOX_EZ_I2C_TIMEOUT);
-    }
+    // set pull-up
+    // - unused  : on  : 1
+    // - input   : on  : 1
+    // - driving : off : 0
+    mcp23018_status = i2c_start(I2C_ADDR_WRITE, ERGODOX_EZ_I2C_TIMEOUT);    if (mcp23018_status) goto out;
+    mcp23018_status = i2c_write(GPPUA, ERGODOX_EZ_I2C_TIMEOUT);             if (mcp23018_status) goto out;
+    mcp23018_status = i2c_write(0b10000000, ERGODOX_EZ_I2C_TIMEOUT);        if (mcp23018_status) goto out;
+    mcp23018_status = i2c_write(0b11111111, ERGODOX_EZ_I2C_TIMEOUT);        if (mcp23018_status) goto out;
 
+out:
+    i2c_stop();
     // SREG=sreg_prev;
     //uprintf("Init %x\n", mcp23018_status);
     return mcp23018_status;

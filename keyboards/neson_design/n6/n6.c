@@ -20,7 +20,6 @@
 #include "quantum.h"
 #include "i2c_master.h"
 #include "drivers/led/issi/is31fl3731.h"
-#include "ws2812.h"
 
 enum {
     SELF_TESTING,
@@ -339,7 +338,7 @@ void housekeeping_task_kb(void)
     housekeeping_task_user();
 }
 
-void setleds_custom(rgb_led_t *start_led, uint16_t num_leds)
+void rgblight_call_driver(rgb_led_t *start_led, uint8_t num_leds)
 {
     if (rgb_state.state != NORMAL) return;
 
@@ -348,10 +347,6 @@ void setleds_custom(rgb_led_t *start_led, uint16_t num_leds)
     }
     ws2812_setleds(start_led+IS31FL3731_LED_COUNT, 1);
 }
-
-const rgblight_driver_t rgblight_driver = {
-    .setleds = setleds_custom,
-};
 
 bool led_update_kb(led_t led_state)
 {

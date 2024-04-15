@@ -30,13 +30,6 @@
         "animations": {
             "alternating": true,
             "breathing": true
-        },
-        "default": {
-            "val": 155
-        },
-        "layers": {
-            "enabled": true,
-            "max": 4
         }
     },
     "matrix_pins": {

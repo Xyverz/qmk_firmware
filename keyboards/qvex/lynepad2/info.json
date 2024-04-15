@@ -35,10 +35,7 @@
     "rgblight": {
         "led_count": 5,
         "max_brightness": 192,
-        "sleep": true,
-        "default": {
-            "val": 64
-        }
+        "sleep": true
     },
     "ws2812": {
         "pin": "D3"
@@ -47,10 +44,7 @@
         "breathing": true,
         "levels": 8,
         "max_brightness": 192,
-        "pin": "B7",
-        "default": {
-            "brightness": 5
-        }
+        "pin": "B7"
     },
     "layouts": {
         "LAYOUT": {

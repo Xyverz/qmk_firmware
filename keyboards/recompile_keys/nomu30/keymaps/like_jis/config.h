@@ -61,5 +61,5 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   #define WS2812_DI_PIN B5
   #define RGBLIGHT_TIMER
 
-  #define RGBLIGHT_LED_COUNT 6
+  #define RGBLED_NUM 6
 #endif

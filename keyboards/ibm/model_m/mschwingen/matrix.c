@@ -60,7 +60,8 @@ static bool read_rows_on_col(matrix_row_t current_matrix[], uint8_t current_col)
     row_data = spi_read() << 8;
     row_data |= spi_read();
 
-    dprintf("%02X ", ~row_data);
+    debug_hex8(~row_data);
+    dprint(" ");
 
     // For each row...
     for (uint8_t row_index = 0; row_index < MATRIX_ROWS; row_index++) {

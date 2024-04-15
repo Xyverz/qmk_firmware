@@ -1,1 +1,1 @@
-WS2812_DRIVER_REQUIRED = yes
+# This file intentionally left blank

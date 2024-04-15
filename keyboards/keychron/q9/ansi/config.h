@@ -16,5 +16,9 @@
 
 #pragma once
 
+/* RGB Matrix Configuration */
+#define DRIVER_1_LED_TOTAL 52
+#define RGB_MATRIX_LED_COUNT DRIVER_1_LED_TOTAL
+
 /* Enable caps-lock LED */
 #define CAPS_LOCK_LED_INDEX 15

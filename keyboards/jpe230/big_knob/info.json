@@ -31,9 +31,7 @@
     "backlight": {
         "pin": "GP7",
         "levels": 7,
-        "default": {
-            "brightness": 6
-        }
+        "breathing": false
     },
     "rgblight": {
         "driver": "ws2812",

@@ -9,9 +9,7 @@
         "device_version": "0.0.1"
     },
     "rgb_matrix": {
-        "driver": "ws2812",
-        "max_brightness": 200,
-        "sleep": true
+        "driver": "ws2812"
     },
     "indicators": {
         "caps_lock": "D6",

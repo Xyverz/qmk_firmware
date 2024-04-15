@@ -14,3 +14,5 @@ RGBLIGHT_ENABLE = yes        # Enable WS2812 RGB underlight.
 RGB_MATRIX_ENABLE = no
 ENCODER_ENABLE = yes
 DIP_SWITCH_ENABLE = yes
+
+LAYOUTS_HAS_RGB = no

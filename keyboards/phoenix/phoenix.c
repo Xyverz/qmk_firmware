@@ -2,7 +2,7 @@
 #include "usb_main.h"
 #include "phoenix.h"
 
-void bootmagic_scan(void) {
+void bootmagic_lite(void) {
     matrix_scan();
     wait_ms(5);
     matrix_scan();

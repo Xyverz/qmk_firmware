@@ -5,3 +5,5 @@
 
 /* Solenoid pin */
 #define SOLENOID_PIN A7
+
+#define DYNAMIC_KEYMAP_LAYER_COUNT 2

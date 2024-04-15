@@ -16,9 +16,6 @@
             "rgb_test": true,
             "alternating": true,
             "twinkle": true
-        },
-        "default": {
-            "hue": 201
         }
     },
     "tapping": {

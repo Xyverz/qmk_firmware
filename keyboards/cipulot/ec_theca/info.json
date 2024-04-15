@@ -8,7 +8,7 @@
     },
     "diode_direction": "COL2ROW",
     "features": {
-        "bootmagic": false,
+        "bootmagic": true,
         "console": true,
         "extrakey": true,
         "mousekey": true,

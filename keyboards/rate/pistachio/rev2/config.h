@@ -21,7 +21,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 /* Split hand configration */
 #define SPLIT_HAND_MATRIX_GRID D4,D3
-#define SPLIT_HAND_MATRIX_GRID_LOW_IS_LEFT
 
 #define RGBLIGHT_LAYERS
 

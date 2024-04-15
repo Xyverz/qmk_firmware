@@ -7,7 +7,6 @@ from collections.abc import Mapping
 from functools import lru_cache
 from typing import OrderedDict
 from pathlib import Path
-from copy import deepcopy
 
 from milc import cli
 
@@ -23,8 +22,7 @@ def _dict_raise_on_duplicates(ordered_pairs):
     return d
 
 
-@lru_cache(maxsize=20)
-def _json_load_impl(json_file, strict=True):
+def json_load(json_file, strict=True):
     """Load a json file from disk.
 
     Note: file must be a Path object.
@@ -44,11 +42,7 @@ def _json_load_impl(json_file, strict=True):
         exit(1)
 
 
-def json_load(json_file, strict=True):
-    return deepcopy(_json_load_impl(json_file=json_file, strict=strict))
-
-
-@lru_cache(maxsize=20)
+@lru_cache(maxsize=0)
 def load_jsonschema(schema_name):
     """Read a jsonschema file from disk.
     """
@@ -63,7 +57,7 @@ def load_jsonschema(schema_name):
     return json_load(schema_path)
 
 
-@lru_cache(maxsize=1)
+@lru_cache(maxsize=0)
 def compile_schema_store():
     """Compile all our schemas into a schema store.
     """
@@ -79,7 +73,7 @@ def compile_schema_store():
     return schema_store
 
 
-@lru_cache(maxsize=20)
+@lru_cache(maxsize=0)
 def create_validator(schema):
     """Creates a validator for the given schema id.
     """

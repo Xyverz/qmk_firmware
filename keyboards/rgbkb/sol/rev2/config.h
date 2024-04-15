@@ -24,28 +24,30 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifdef LED_MIRRORED
   #ifdef FULLHAND_ENABLE
     #define FULLHAND_LEDS 24
-    #define RGBLIGHT_LED_COUNT 74
+    #define RGBLED_NUM 74
   #elif SF_ENABLE
     #define FULLHAND_LEDS 38
-    #define RGBLIGHT_LED_COUNT 81
+    #define RGBLED_NUM 81
   #else
     #define FULLHAND_LEDS 0
-    #define RGBLIGHT_LED_COUNT 62
+    #define RGBLED_NUM 62
   #endif
 #else
   #ifdef FULLHAND_ENABLE
     #define FULLHAND_LEDS 24
-    #define RGBLIGHT_LED_COUNT 148
+    #define RGBLED_NUM 148
   #elif SF_ENABLE
     #define FULLHAND_LEDS 38
-    #define RGBLIGHT_LED_COUNT 162
+    #define RGBLED_NUM 162
   #else
     #define FULLHAND_LEDS 0
-    #define RGBLIGHT_LED_COUNT 124
+    #define RGBLED_NUM 124
   #endif
 #endif
 
-#define RGB_MATRIX_LED_COUNT  RGBLIGHT_LED_COUNT
+#define RGB_MATRIX_LED_COUNT  RGBLED_NUM
+
+#define RGB_MATRIX_CENTER { 112, 37 }
 
 // Encoder support
 #ifndef EXTRA_ENCODERS_ENABLE

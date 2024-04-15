@@ -87,23 +87,23 @@ uint8_t matrix_scan(void)
 
     uint8_t code;
     if ((code = ps2_host_recv())) {
-        dprintf("r%02X ", code);
+        debug("r"); debug_hex(code); debug(" ");
     }
 
     switch (state) {
         case RESET:
-            dprint("wFF ");
+            debug("wFF ");
             if (ps2_host_send(0xFF) == 0xFA) {
-                dprint("[ack]\nRESET_RESPONSE: ");
+                debug("[ack]\nRESET_RESPONSE: ");
                 state = RESET_RESPONSE;
             }
             break;
         case RESET_RESPONSE:
             if (code == 0xAA) {
-                dprint("[ok]\nKBD_ID: ");
+                debug("[ok]\nKBD_ID: ");
                 state = KBD_ID0;
             } else if (code) {
-                dprint("err\nRESET: ");
+                debug("err\nRESET: ");
                 state = RESET;
             }
             break;
@@ -115,14 +115,14 @@ uint8_t matrix_scan(void)
             break;
         case KBD_ID1:
             if (code) {
-                dprint("\nCONFIG: ");
+                debug("\nCONFIG: ");
                 state = CONFIG;
             }
             break;
         case CONFIG:
-            dprint("wF8 ");
+            debug("wF8 ");
             if (ps2_host_send(0xF8) == 0xFA) {
-                dprint("[ack]\nREADY\n");
+                debug("[ack]\nREADY\n");
                 state = READY;
             }
             break;
@@ -132,16 +132,16 @@ uint8_t matrix_scan(void)
                     break;
                 case 0xF0:
                     state = F0_BREAK;
-                    dprint(" ");
+                    debug(" ");
                     break;
                 default:    // normal key make
                     if (code < 0x88) {
                         matrix_make(code);
                     } else {
-                        dprintf("unexpected scan code at READY: %02X\n", code);
+                        debug("unexpected scan code at READY: "); debug_hex(code); debug("\n");
                     }
                     state = READY;
-                    dprint("\n");
+                    debug("\n");
             }
             break;
         case F0_BREAK:    // Break code
@@ -152,10 +152,10 @@ uint8_t matrix_scan(void)
                     if (code < 0x88) {
                         matrix_break(code);
                     } else {
-                        dprintf("unexpected scan code at F0: %02X\n", code);
+                        debug("unexpected scan code at F0: "); debug_hex(code); debug("\n");
                     }
                     state = READY;
-                    dprint("\n");
+                    debug("\n");
             }
             break;
     }

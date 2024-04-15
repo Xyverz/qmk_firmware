@@ -10,3 +10,5 @@ NKRO_ENABLE = no            # Enable N-Key Rollover
 BACKLIGHT_ENABLE = no       # Enable keyboard backlight functionality
 AUDIO_ENABLE = no           # Audio output
 RGB_MATRIX_ENABLE = yes
+
+LAYOUTS_HAS_RGB = yes

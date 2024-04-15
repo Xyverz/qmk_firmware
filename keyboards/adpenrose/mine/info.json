@@ -15,9 +15,6 @@
     "build": {
         "lto": true
     },
-    "dynamic_keymap": {
-        "layer_count": 3
-    },
     "encoder": {
         "rotary": [{ "pin_a": "C4", "pin_b": "C3" }]
     },

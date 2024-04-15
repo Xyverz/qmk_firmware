@@ -24,7 +24,7 @@ void matrix_scan_sub_kb(void) {
     }
 }
 
-__attribute__((weak)) void bootmagic_scan(void) {
+__attribute__((weak)) void bootmagic_lite(void) {
     // We need multiple scans because debouncing can't be turned off.
     matrix_scan();
 #if defined(DEBOUNCE) && DEBOUNCE > 0
@@ -34,13 +34,13 @@ __attribute__((weak)) void bootmagic_scan(void) {
 #endif
     matrix_scan();
 
-    uint8_t row = BOOTMAGIC_ROW;
-    uint8_t col = BOOTMAGIC_COLUMN;
+    uint8_t row = BOOTMAGIC_LITE_ROW;
+    uint8_t col = BOOTMAGIC_LITE_COLUMN;
 
-#if defined(SPLIT_KEYBOARD) && defined(BOOTMAGIC_ROW_RIGHT) && defined(BOOTMAGIC_COLUMN_RIGHT)
+#if defined(SPLIT_KEYBOARD) && defined(BOOTMAGIC_LITE_ROW_RIGHT) && defined(BOOTMAGIC_LITE_COLUMN_RIGHT)
     if (!is_keyboard_left()) {
-        row = BOOTMAGIC_ROW_RIGHT;
-        col = BOOTMAGIC_COLUMN_RIGHT;
+        row = BOOTMAGIC_LITE_ROW_RIGHT;
+        col = BOOTMAGIC_LITE_COLUMN_RIGHT;
     }
 #endif
 

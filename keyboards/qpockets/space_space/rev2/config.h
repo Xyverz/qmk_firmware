@@ -17,3 +17,5 @@
 #pragma once
 
 #define LOCKING_SUPPORT_ENABLE
+
+#define RGBLIGHT_DEFAULT_HUE 130

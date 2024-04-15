@@ -20,3 +20,10 @@
 
 /* Trackball angle adjustment. */
 #define ROTATIONAL_TRANSFORM_ANGLE -25
+
+/* RGB settings. */
+#ifdef RGB_MATRIX_ENABLE
+#    define RGB_MATRIX_LED_COUNT 42
+#    define RGB_MATRIX_SPLIT \
+        { 21, 21 }
+#endif

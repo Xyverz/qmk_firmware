@@ -5,8 +5,8 @@
 bool i2c_initialized = false;
 
 void left_config(void);
-i2c_status_t left_write(uint8_t reg, uint8_t data);
-i2c_status_t left_read(uint8_t reg, uint8_t *data);
+uint8_t left_write(uint8_t reg, uint8_t data);
+uint8_t left_read(uint8_t reg, uint8_t *data);
 
 uint8_t init_mcp23017(void)
 {
@@ -35,11 +35,12 @@ void left_init(void)
 
 void left_scan(void)
 {
-    
-    i2c_status_t ret = i2c_ping_address(I2C_ADDR, HOTDOX_I2C_TIMEOUT);
+    uint8_t ret = i2c_start(I2C_ADDR_WRITE, HOTDOX_I2C_TIMEOUT);
 
-    if (ret == I2C_STATUS_SUCCESS)
+    if (ret == 0)
     {
+        i2c_stop();
+
         if (!i2c_initialized)
         {
             i2c_initialized = true;
@@ -90,29 +91,40 @@ void left_config(void)
   left_write(MCP23017_B0_GPIOB,  0xC0);
 }
 
-i2c_status_t left_write(uint8_t reg, uint8_t data)
+uint8_t left_write(uint8_t reg, uint8_t data)
 {
   if (!i2c_initialized)
   {
     return 0;
   }
 
-  i2c_status_t ret;
+  uint8_t ret;
 
-  ret = i2c_writeReg(I2C_ADDR, reg,  &data, sizeof(data), HOTDOX_I2C_TIMEOUT); 
+  ret = i2c_start(I2C_ADDR_WRITE, HOTDOX_I2C_TIMEOUT);     if (ret) goto out;
+  ret = i2c_write(reg, HOTDOX_I2C_TIMEOUT);                if (ret) goto out;
+  ret = i2c_write(data, HOTDOX_I2C_TIMEOUT);
 
+out:
+  i2c_stop();
   return ret;
 }
 
-i2c_status_t left_read(uint8_t reg, uint8_t *data)
+uint8_t left_read(uint8_t reg, uint8_t *data)
 {
   if (!i2c_initialized)
   {
     return 0;
   }
 
-  i2c_status_t ret = 0;
-  ret = i2c_readReg(I2C_ADDR, reg, data, 1, HOTDOX_I2C_TIMEOUT);
+  uint8_t ret = 0;
 
+  ret = i2c_start(I2C_ADDR_WRITE, HOTDOX_I2C_TIMEOUT);     if (ret) goto out;
+  ret = i2c_write(reg, HOTDOX_I2C_TIMEOUT);                if (ret) goto out;
+  ret = i2c_start(I2C_ADDR_READ, HOTDOX_I2C_TIMEOUT);      if (ret) goto out;
+
+  *data = i2c_read_nack(HOTDOX_I2C_TIMEOUT);
+
+out:
+  i2c_stop();
   return ret;
 }

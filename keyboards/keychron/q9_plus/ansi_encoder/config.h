@@ -16,6 +16,9 @@
 
 #pragma once
 
+/* RGB Matrix Configuration */
+#define RGB_MATRIX_LED_COUNT 53
+
 /* Encoder Configuration */
 #define ENCODER_DEFAULT_POS 0x3
 

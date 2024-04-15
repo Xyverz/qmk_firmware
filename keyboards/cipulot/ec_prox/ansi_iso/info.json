@@ -8,12 +8,18 @@
     },
     "diode_direction": "COL2ROW",
     "features": {
-        "bootmagic": false,
+        "audio": false,
+        "backlight": false,
+        "bootmagic": true,
+        "command": false,
         "console": true,
         "extrakey": true,
         "mousekey": true,
         "nkro": true,
         "rgblight": true
+    },
+    "mouse_key": {
+        "enabled": true
     },
     "processor": "STM32F401",
     "rgblight": {

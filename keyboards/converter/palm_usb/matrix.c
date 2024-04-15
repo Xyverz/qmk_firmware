@@ -168,7 +168,7 @@ uint8_t get_serial_byte(void) {
     while(1) {
         code = uart_read();
         if (code) { 
-            dprintf("%02X ", code);
+            debug_hex(code); debug(" ");
             return code;
         }
     }
@@ -316,7 +316,8 @@ uint8_t matrix_scan(void)
    last_activity = timer_read();
    disconnect_counter=0; // if we are getting serial data, we're connected. 
 
-    dprintf("%02X ", code);
+    debug_hex(code); debug(" ");
+
 
     switch (code) {
         case 0xFD:  // unexpected reset byte 2

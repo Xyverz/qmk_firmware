@@ -1,5 +1,5 @@
-# Dilemma v2 (3x5+3 assembled)
+# Next generation Dilemma keyboard
 
 This keyboard is an updated version of the [3x5+2 Dilemma](../3x5_2/).
 
-The Dilemma v2 is available at [bastardkb.com](https://bastardkb.com).
+This is still under active development, and not available publicly yet.

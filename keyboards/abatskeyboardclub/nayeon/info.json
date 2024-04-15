@@ -13,8 +13,7 @@
         "extrakey": true,
         "console": false,
         "command": false,
-        "nkro": false,
-        "rgb_matrix": true
+        "nkro": false
     },
     "usb": {
         "vid": "0xABA7",
@@ -26,11 +25,7 @@
         "driver": "vendor"
     },
     "rgb_matrix": {
-        "driver": "ws2812",
-        "layout": [
-            {"matrix": [3, 0], "x": 5, "y": 40, "flags": 8},
-            {"matrix": [0, 15], "x": 211, "y": 0, "flags": 8}
-        ]
+        "driver": "ws2812"
     },
     "processor": "RP2040",
     "bootloader": "rp2040",

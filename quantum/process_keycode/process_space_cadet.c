@@ -157,14 +157,10 @@ bool process_space_cadet(uint16_t keycode, keyrecord_t *record) {
         }
         default: {
             if (record->event.pressed) {
-                reset_space_cadet();
+                sc_last = 0;
             }
             break;
         }
     }
     return true;
-}
-
-void reset_space_cadet() {
-    sc_last = 0;
 }

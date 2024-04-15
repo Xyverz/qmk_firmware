@@ -1011,7 +1011,9 @@ __attribute__((weak)) void unregister_code(uint8_t code) {
  */
 __attribute__((weak)) void tap_code_delay(uint8_t code, uint16_t delay) {
     register_code(code);
-    wait_ms(delay);
+    for (uint16_t i = delay; i > 0; i--) {
+        wait_ms(1);
+    }
     unregister_code(code);
 }
 

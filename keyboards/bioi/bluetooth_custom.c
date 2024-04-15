@@ -59,7 +59,9 @@ static void bluefruit_trace_footer(void)
 static void bluefruit_serial_send(uint8_t data)
 {
 #ifdef BLUEFRUIT_TRACE_SERIAL
-    dprintf(" %02X ", data);
+    dprintf(" ");
+    debug_hex8(data);
+    dprintf(" ");
 #endif
     serial_send(data);
 }
@@ -144,7 +146,11 @@ void bluetooth_send_consumer(uint16_t usage)
     uint16_t bitmap = CONSUMER2BLUEFRUIT(usage);
 
 #ifdef BLUEFRUIT_TRACE_SERIAL
-    dprintf("\nData: %04X; bitmap: %04X\n", data, bitmap);
+    dprintf("\nData: ");
+    debug_hex16(data);
+    dprintf("; bitmap: ");
+    debug_hex16(bitmap);
+    dprintf("\n");
     bluefruit_trace_header();
 #endif
     send_str(PSTR("AT+BLEHIDCONTROLKEY=0x"));

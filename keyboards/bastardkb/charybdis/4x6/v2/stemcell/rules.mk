@@ -1,3 +1,5 @@
+CONVERT_TO = stemcell
+
 # Build Options
 #   change yes to no to disable
 #
